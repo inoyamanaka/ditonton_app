@@ -1,6 +1,6 @@
 part of 'tv_series_bloc.dart';
 
-sealed class TvSeriesState extends Equatable {
+class TvSeriesState extends Equatable {
   const TvSeriesState();
 
   @override
@@ -22,14 +22,16 @@ final class OnTheAirTvSeriesSuccess extends TvSeriesState {
 }
 
 // =========================================================
-final class PopularTvSeriesLoading extends TvSeriesState {}
+class PopularTvSeriesLoading extends TvSeriesState {
+  const PopularTvSeriesLoading();
+}
 
-final class PopularTvSeriesFailure extends TvSeriesState {
+class PopularTvSeriesFailure extends TvSeriesState {
   final String message;
   PopularTvSeriesFailure(this.message);
 }
 
-final class PopularTvSeriesSuccess extends TvSeriesState {
+class PopularTvSeriesSuccess extends TvSeriesState {
   final List<TvSeries> data;
   PopularTvSeriesSuccess(this.data);
 }
@@ -117,28 +119,18 @@ final class RemoveWatchListTvSeriesSuccess extends TvSeriesState {
   RemoveWatchListTvSeriesSuccess(this.data);
 }
 
-final class GetByIdTvSeriesLoading extends TvSeriesState {}
+final class GetWatchListTvSeriesLoading extends TvSeriesState {}
 
-final class GetByIdTvSeriesFailure extends TvSeriesState {
+final class GetWatchListTvSeriesFailure extends TvSeriesState {
   final String message;
 
-  GetByIdTvSeriesFailure(this.message);
+  GetWatchListTvSeriesFailure(this.message);
 }
 
-final class GetByIdTvSeriesSuccess extends TvSeriesState {}
-
-final class ListWatchListTvSeriesLoading extends TvSeriesState {}
-
-final class ListWatchListTvSeriesFailure extends TvSeriesState {
-  final String message;
-
-  ListWatchListTvSeriesFailure(this.message);
-}
-
-final class ListWatchListTvSeriesSuccess extends TvSeriesState {
+final class GetWatchListTvSeriesSuccess extends TvSeriesState {
   final List<TvSeries> data;
 
-  ListWatchListTvSeriesSuccess(this.data);
+  GetWatchListTvSeriesSuccess(this.data);
 }
 
 final class StatusWatchListTvSeriesLoading extends TvSeriesState {}

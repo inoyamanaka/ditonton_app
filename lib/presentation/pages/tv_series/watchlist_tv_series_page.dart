@@ -19,7 +19,7 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage> {
   @override
   void initState() {
     super.initState();
-    watchListBloc.add(ListWatchListTvSeriesEvent());
+    watchListBloc.add(GetWatchListTvSeriesEvent());
   }
 
   @override
@@ -34,17 +34,17 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage> {
             padding: const EdgeInsets.all(8.0),
             child: BlocBuilder<GetWatchListBloc, TvSeriesState>(
               builder: (context, state) {
-                if (state is ListWatchListTvSeriesLoading) {
+                if (state is GetWatchListTvSeriesLoading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
                 }
-                if (state is ListWatchListTvSeriesFailure) {
+                if (state is GetWatchListTvSeriesFailure) {
                   return Center(
                     key: Key('error_message'),
                     child: Text(state.message),
                   );
-                } else if (state is ListWatchListTvSeriesSuccess) {
+                } else if (state is GetWatchListTvSeriesSuccess) {
                   print(state.data.length);
                   dataTvSeries = state.data;
                   ListView.builder(

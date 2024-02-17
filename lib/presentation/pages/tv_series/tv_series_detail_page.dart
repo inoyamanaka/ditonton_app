@@ -23,13 +23,14 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
   final statusWatchListBloc = locator<StatusWatchListBloc>();
   final insertWatchListBloc = locator<InsertWatchListBloc>();
   final removeWatchListBloc = locator<RemoveWatchListBloc>();
+  final detailTvSeriesBloc = locator<DetailTvSeriesBloc>();
 
   bool isAddWatchlist = false;
 
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<DetailTvSeriesBloc>(context).add(
+    detailTvSeriesBloc.add(
       DetailTvSeriesEvent(widget.id),
     );
     recommendationBloc.add(
@@ -44,16 +45,19 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider<DetailTvSeriesBloc>(
+          create: (context) => detailTvSeriesBloc,
+        ),
         BlocProvider<RecommendationTvSeriesBloc>(
           create: (context) => recommendationBloc,
         ),
-        BlocProvider(
+        BlocProvider<StatusWatchListBloc>(
           create: (context) => statusWatchListBloc,
         ),
-        BlocProvider(
+        BlocProvider<InsertWatchListBloc>(
           create: (context) => insertWatchListBloc,
         ),
-        BlocProvider(
+        BlocProvider<RemoveWatchListBloc>(
           create: (context) => removeWatchListBloc,
         ),
       ],
@@ -171,6 +175,7 @@ class _DetailContentState extends State<DetailContent> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
+                              key: const Key("title"),
                               widget.series.name!,
                               style: kHeading5,
                             ),
@@ -190,6 +195,7 @@ class _DetailContentState extends State<DetailContent> {
                                 }
                               },
                               child: ValueListenableBuilder(
+                                
                                 valueListenable: statusWatchList,
                                 builder: (context, value, child) => Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -203,6 +209,7 @@ class _DetailContentState extends State<DetailContent> {
                               ),
                             ),
                             Text(
+                              key: const Key("genre"),
                               _showGenres(widget.series.genres!),
                             ),
                             Row(
@@ -235,6 +242,7 @@ class _DetailContentState extends State<DetailContent> {
                               style: kHeading6,
                             ),
                             Text(
+                              key: const Key("overView"),
                               widget.series.overview!,
                             ),
                             SizedBox(height: 16),
@@ -339,16 +347,5 @@ class _DetailContentState extends State<DetailContent> {
     }
 
     return result.substring(0, result.length - 2);
-  }
-
-  String _showDuration(int runtime) {
-    final int hours = runtime ~/ 60;
-    final int minutes = runtime % 60;
-
-    if (hours > 0) {
-      return '${hours}h ${minutes}m';
-    } else {
-      return '${minutes}m';
-    }
   }
 }

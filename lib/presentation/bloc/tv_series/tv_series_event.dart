@@ -29,7 +29,6 @@ class RecommendationTvSeriesEvent extends TvSeriesEvent {
   final int id;
 }
 
-
 class SearchTvSeriesEvent extends TvSeriesEvent {
   const SearchTvSeriesEvent(this.query);
   final String query;
@@ -45,13 +44,8 @@ class RemoveWatchListTvSeriesEvent extends TvSeriesEvent {
   final TvSeriesDetail series;
 }
 
-class GetByIdTvSeriesEvent extends TvSeriesEvent {
-  const GetByIdTvSeriesEvent(this.id);
-  final int id;
-}
-
-class ListWatchListTvSeriesEvent extends TvSeriesEvent {
-  const ListWatchListTvSeriesEvent();
+class GetWatchListTvSeriesEvent extends TvSeriesEvent {
+  const GetWatchListTvSeriesEvent();
 }
 
 class StatusWatchListTvSeriesEvent extends TvSeriesEvent {

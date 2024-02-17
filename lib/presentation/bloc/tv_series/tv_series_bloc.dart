@@ -17,8 +17,9 @@ import 'package:equatable/equatable.dart';
 part 'tv_series_event.dart';
 part 'tv_series_state.dart';
 
-class TvSeriesBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
-  TvSeriesBloc(this.tvSeriesOnTheAirUsecase) : super(TvSeriesInitial()) {
+class OnTheAirTvSeriesBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
+  OnTheAirTvSeriesBloc(this.tvSeriesOnTheAirUsecase)
+      : super(TvSeriesInitial()) {
     on<OnTheAirTvSeriesEvent>((event, emit) async {
       emit(OnTheAirTvSeriesLoading());
       final failureOrSuccess = await tvSeriesOnTheAirUsecase.execute();
@@ -72,7 +73,7 @@ class DetailTvSeriesBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
     this.tvSeriesDetailUsecase,
   ) : super(TvSeriesInitial()) {
     on<DetailTvSeriesEvent>((event, emit) async {
-      emit(TopRatedTvSeriesLoading());
+      emit(DetailTvSeriesLoading());
       final failureOrSuccess = await tvSeriesDetailUsecase.execute(event.id);
       failureOrSuccess.fold(
         (error) => emit(DetailTvSeriesFailure(error.message)),
@@ -124,7 +125,7 @@ class StatusWatchListBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
     this.getStatusWatchlistTvSeries,
   ) : super(TvSeriesInitial()) {
     on<StatusWatchListTvSeriesEvent>((event, emit) async {
-      emit(SearchTvSeriesLoading());
+      emit(StatusWatchListTvSeriesLoading());
       final failureOrSuccess =
           await getStatusWatchlistTvSeries.execute(event.id);
       if (failureOrSuccess == false) {
@@ -160,12 +161,12 @@ class GetWatchListBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
   GetWatchListBloc(
     this.getWatchlistTvSeries,
   ) : super(TvSeriesInitial()) {
-    on<ListWatchListTvSeriesEvent>((event, emit) async {
-      emit(ListWatchListTvSeriesLoading());
+    on<GetWatchListTvSeriesEvent>((event, emit) async {
+      emit(GetWatchListTvSeriesLoading());
       final failureOrSuccess = await getWatchlistTvSeries.execute();
       failureOrSuccess.fold(
-        (error) => emit(ListWatchListTvSeriesFailure(error.message)),
-        (data) => emit(ListWatchListTvSeriesSuccess(data)),
+        (error) => emit(GetWatchListTvSeriesFailure(error.message)),
+        (data) => emit(GetWatchListTvSeriesSuccess(data)),
       );
     });
   }

@@ -28,7 +28,7 @@ class _TvSeriesHomePageState extends State<TvSeriesHomePage> {
               onTap: () =>
                   Navigator.pushNamed(context, PopularTvSeriesPage.ROUTE_NAME),
             ),
-            BlocBuilder<TvSeriesBloc, TvSeriesState>(builder: (context, state) {
+            BlocBuilder<OnTheAirTvSeriesBloc, TvSeriesState>(builder: (context, state) {
               print(state);
               if (state is OnTheAirTvSeriesSuccess) {
                 return TvSeriesList(state.data);

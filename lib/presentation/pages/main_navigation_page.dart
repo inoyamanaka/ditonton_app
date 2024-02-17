@@ -34,7 +34,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
           ..fetchPopularMovies()
           ..fetchTopRatedMovies());
 
-    BlocProvider.of<TvSeriesBloc>(context).add(
+    BlocProvider.of<OnTheAirTvSeriesBloc>(context).add(
       OnTheAirTvSeriesEvent(),
     );
     BlocProvider.of<PopularTvSeriesBloc>(context).add(

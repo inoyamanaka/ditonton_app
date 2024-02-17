@@ -17,9 +17,8 @@ TvSeriesModel _$TvSeriesModelFromJson(Map<String, dynamic> json) =>
           ? null
           : DateTime.parse(json['first_air_date'] as String),
       genre: (json['genre'] as List<dynamic>?)
-              ?.map((e) => GenresModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
+          ?.map((e) => GenresModel.fromJson(e as Map<String, dynamic>))
+          .toList() ?? [],
       homepage: json['homepage'] as String?,
       id: json['id'] as int?,
       inProduction: json['in_production'] as bool?,
@@ -42,9 +41,8 @@ TvSeriesModel _$TvSeriesModelFromJson(Map<String, dynamic> json) =>
       popularity: (json['popularity'] as num?)?.toDouble(),
       posterPath: json['poster_path'] as String?,
       season: (json['season'] as List<dynamic>?)
-              ?.map((e) => SeasonModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          [],
+          ?.map((e) => SeasonModel.fromJson(e as Map<String, dynamic>))
+          .toList() ?? [],
       status: json['status'] as String?,
       tagline: json['tagline'] as String?,
       type: json['type'] as String?,
