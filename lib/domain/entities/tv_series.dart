@@ -4,34 +4,34 @@ import 'package:ditonton/domain/entities/season.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeries extends Equatable {
-  final bool? adult;
-  final String? backdropPath;
-  final List<int>? episodeRunTime;
-  final DateTime? firstAirDate;
-  final List<GenreTv>? genre;
-  final String? homepage;
-  final int? id;
-  final bool? inProduction;
-  final List<String>? languages;
-  final DateTime? lastAirDate;
-  final String? name;
-  final dynamic? nextEpisodeToAir;
-  final int? numberOfEpisodes;
-  final int? numberOfSeasons;
-  final List<String>? originCountry;
-  final String? originalLanguage;
-  final String? originalName;
-  final String? overview;
-  final double? popularity;
-  final String? posterPath;
-  final List<Season?>? season;
-  final String? status;
-  final String? tagline;
-  final String? type;
-  final double? voteAverage;
-  final int? voteCount;
+  bool? adult;
+  String? backdropPath;
+  List<int>? episodeRunTime;
+  DateTime? firstAirDate;
+  List<GenreTv>? genre;
+  String? homepage;
+  int? id;
+  bool? inProduction;
+  List<String>? languages;
+  DateTime? lastAirDate;
+  String? name;
+  dynamic? nextEpisodeToAir;
+  int? numberOfEpisodes;
+  int? numberOfSeasons;
+  List<String>? originCountry;
+  String? originalLanguage;
+  String? originalName;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  List<Season?>? season;
+  String? status;
+  String? tagline;
+  String? type;
+  double? voteAverage;
+  int? voteCount;
 
-  const TvSeries({
+  TvSeries({
     required this.adult,
     required this.backdropPath,
     required this.episodeRunTime,
@@ -58,6 +58,13 @@ class TvSeries extends Equatable {
     required this.type,
     required this.voteAverage,
     required this.voteCount,
+  });
+
+  TvSeries.watchlist({
+    required this.id,
+    required this.overview,
+    required this.posterPath,
+    required this.name,
   });
 
   @override

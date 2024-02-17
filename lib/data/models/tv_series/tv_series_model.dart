@@ -4,9 +4,9 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'tv_series_model.g.dart';
 
-@JsonSerializable(createToJson: false, fieldRename: FieldRename.none)
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class TvSeriesModel extends TvSeries {
-  const TvSeriesModel(
+  TvSeriesModel(
       {required super.adult,
       required super.backdropPath,
       required super.episodeRunTime,
@@ -38,7 +38,7 @@ class TvSeriesModel extends TvSeries {
       _$TvSeriesModelFromJson(json);
 }
 
-@JsonSerializable(createToJson: false, fieldRename: FieldRename.none)
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class SeasonModel extends Season {
   SeasonModel(
       {required super.airDate,
@@ -54,7 +54,7 @@ class SeasonModel extends Season {
       _$SeasonModelFromJson(json);
 }
 
-@JsonSerializable(createToJson: false, fieldRename: FieldRename.none)
+@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
 class GenresModel extends GenreTv {
   GenresModel({required super.id, required super.name});
   factory GenresModel.fromJson(Map<String, dynamic> json) =>
