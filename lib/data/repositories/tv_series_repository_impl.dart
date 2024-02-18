@@ -44,9 +44,9 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   }
 
   @override
-  Future<Either<Failure, List<TvSeries>>> getTopRatedTvSeries() async {
+  Future<Either<Failure, List<TvSeries>>> getTvSeriesTopRated() async {
     try {
-      final result = await tvSeriesRemoteDatasource.getTopRatedTvSeries();
+      final result = await tvSeriesRemoteDatasource.getTvSeriesTopRated();
       return Right(result);
     } on ServerException {
       return Left(ServerFailure(''));

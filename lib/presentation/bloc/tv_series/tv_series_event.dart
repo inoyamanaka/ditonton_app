@@ -15,8 +15,8 @@ class PopularTvSeriesEvent extends TvSeriesEvent {
   const PopularTvSeriesEvent();
 }
 
-class TopRatedTvSeriesEvent extends TvSeriesEvent {
-  const TopRatedTvSeriesEvent();
+class TvSeriesTopRatedEvent extends TvSeriesEvent {
+  const TvSeriesTopRatedEvent();
 }
 
 class DetailTvSeriesEvent extends TvSeriesEvent {

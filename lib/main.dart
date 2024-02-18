@@ -7,9 +7,11 @@ import 'package:ditonton/presentation/pages/movie/about_page.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
 import 'package:ditonton/presentation/pages/movie/search_page.dart';
 import 'package:ditonton/presentation/pages/movie/watchlist_movies_page.dart';
+import 'package:ditonton/presentation/pages/tv_series/on_the_air_tv_series.dart';
 import 'package:ditonton/presentation/pages/tv_series/popular_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/tv_series_detail_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/tv_series_search_page.dart';
+import 'package:ditonton/presentation/pages/tv_series/tv_series_top_rated_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/watchlist_tv_series_page.dart';
 import 'package:ditonton/presentation/provider/movie_detail_notifier.dart';
 import 'package:ditonton/presentation/provider/movie_list_notifier.dart';
@@ -60,7 +62,7 @@ class MyApp extends StatelessWidget {
           create: (context) => di.locator<PopularTvSeriesBloc>(),
         ),
         BlocProvider(
-          create: (context) => di.locator<TopRatedTvSeriesBloc>(),
+          create: (context) => di.locator<TvSeriesTopRatedBloc>(),
         ),
         BlocProvider(
           create: (context) => di.locator<DetailTvSeriesBloc>(),
@@ -79,7 +81,6 @@ class MyApp extends StatelessWidget {
           colorScheme: kColorScheme,
           primaryColor: kRichBlack,
           scaffoldBackgroundColor: kRichBlack,
-          textTheme: kTextTheme,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
         home: MainNavigationPage(),
@@ -107,6 +108,12 @@ class MyApp extends StatelessWidget {
             case PopularTvSeriesPage.ROUTE_NAME:
               return CupertinoPageRoute(
                   builder: (context) => PopularTvSeriesPage());
+            case TvSeriesTopRatedPage.ROUTE_NAME:
+              return CupertinoPageRoute(
+                  builder: (context) => TvSeriesTopRatedPage());
+            case OnTheAirTvSeriesPage.ROUTE_NAME:
+              return CupertinoPageRoute(
+                  builder: (context) => OnTheAirTvSeriesPage());
             case TvSeriesDetailPage.ROUTE_NAME:
               final id = settings.arguments as int;
               return MaterialPageRoute(

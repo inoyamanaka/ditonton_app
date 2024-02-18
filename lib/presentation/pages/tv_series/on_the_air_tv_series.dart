@@ -1,23 +1,21 @@
-import 'package:ditonton/injection.dart';
 import 'package:ditonton/presentation/bloc/tv_series/tv_series_bloc.dart';
 import 'package:ditonton/presentation/widgets/tv_series/tv_series_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TvSeriesTopRatedPage extends StatefulWidget {
-  static const ROUTE_NAME = '/toprated-tv-series';
+class OnTheAirTvSeriesPage extends StatefulWidget {
+  static const ROUTE_NAME = '/onair-tv-series';
 
   @override
-  _TvSeriesTopRatedPageState createState() => _TvSeriesTopRatedPageState();
+  _OnTheAirTvSeriesPageState createState() => _OnTheAirTvSeriesPageState();
 }
 
-class _TvSeriesTopRatedPageState extends State<TvSeriesTopRatedPage> {
-  final topRatedBloc = locator<TvSeriesTopRatedBloc>();
+class _OnTheAirTvSeriesPageState extends State<OnTheAirTvSeriesPage> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<TvSeriesTopRatedBloc>(context).add(
-      TvSeriesTopRatedEvent(),
+    BlocProvider.of<OnTheAirTvSeriesBloc>(context).add(
+      OnTheAirTvSeriesEvent(),
     );
   }
 
@@ -25,17 +23,17 @@ class _TvSeriesTopRatedPageState extends State<TvSeriesTopRatedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Top Rated Tv Series'),
+        title: Text('On The Air Tv Series'),
       ),
       body: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: BlocBuilder<TvSeriesTopRatedBloc, TvSeriesState>(
+          child: BlocBuilder<OnTheAirTvSeriesBloc, TvSeriesState>(
             builder: (context, state) {
-              if (state is TvSeriesTopRatedLoading) {
+              if (state is OnTheAirTvSeriesLoading) {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (state is TvSeriesTopRatedSuccess) {
+              } else if (state is OnTheAirTvSeriesSuccess) {
                 return ListView.builder(
                   itemBuilder: (context, index) {
                     final series = state.data[index];
@@ -44,7 +42,7 @@ class _TvSeriesTopRatedPageState extends State<TvSeriesTopRatedPage> {
                   itemCount: state.data.length,
                 );
               }
-              if (state is TvSeriesTopRatedFailure) {
+              if (state is OnTheAirTvSeriesFailure) {
                 return Center(
                   key: Key('error_message'),
                   child: Text(state.message),

@@ -40,8 +40,8 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
     BlocProvider.of<PopularTvSeriesBloc>(context).add(
       PopularTvSeriesEvent(),
     );
-    BlocProvider.of<TopRatedTvSeriesBloc>(context).add(
-      TopRatedTvSeriesEvent(),
+    BlocProvider.of<TvSeriesTopRatedBloc>(context).add(
+      TvSeriesTopRatedEvent(),
     );
   }
 

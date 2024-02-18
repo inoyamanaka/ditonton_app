@@ -495,9 +495,9 @@ class MockTvSeriesRepository extends _i1.Mock
           ) as _i10.Future<_i2.Either<_i11.Failure, List<_i18.TvSeries>>>);
   @override
   _i10.Future<_i2.Either<_i11.Failure, List<_i18.TvSeries>>>
-      getTopRatedTvSeries() => (super.noSuchMethod(
+      getTvSeriesTopRated() => (super.noSuchMethod(
             Invocation.method(
-              #getTopRatedTvSeries,
+              #getTvSeriesTopRated,
               [],
             ),
             returnValue: _i10
@@ -505,7 +505,7 @@ class MockTvSeriesRepository extends _i1.Mock
                 _FakeEither_0<_i11.Failure, List<_i18.TvSeries>>(
               this,
               Invocation.method(
-                #getTopRatedTvSeries,
+                #getTvSeriesTopRated,
                 [],
               ),
             )),
@@ -653,10 +653,10 @@ class MockTvSeriesRemoteDataSource extends _i1.Mock
             _i10.Future<List<_i21.TvSeriesModel>>.value(<_i21.TvSeriesModel>[]),
       ) as _i10.Future<List<_i21.TvSeriesModel>>);
   @override
-  _i10.Future<List<_i21.TvSeriesModel>> getTopRatedTvSeries() =>
+  _i10.Future<List<_i21.TvSeriesModel>> getTvSeriesTopRated() =>
       (super.noSuchMethod(
         Invocation.method(
-          #getTopRatedTvSeries,
+          #getTvSeriesTopRated,
           [],
         ),
         returnValue:

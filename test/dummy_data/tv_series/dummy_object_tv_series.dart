@@ -10,7 +10,7 @@ final tTvSeries = TvSeries(
   firstAirDate: DateTime.parse('2022-01-01'),
   genre: [GenreTv(id: 1, name: 'Action')],
   homepage: 'https://example.com',
-  id: 1,
+  id: 56789,
   inProduction: true,
   languages: ['English'],
   lastAirDate: DateTime.parse('2022-12-31'),
@@ -34,7 +34,7 @@ final tTvSeries = TvSeries(
 
 final tTvSeriesDetail = TvSeriesDetail(
   adult: false,
-  backdropPath: "/example_backdrop_path.jpg",
+  backdropPath: "/backdrop_path.jpg",
   createdBy: [
     CreatedByModel(
       id: 123,
@@ -44,23 +44,19 @@ final tTvSeriesDetail = TvSeriesDetail(
       profilePath: "/example_profile_path.jpg",
     ),
   ],
-  episodeRunTime: [30, 45],
-  firstAirDate: DateTime.parse("2022-01-01"),
+  episodeRunTime: [30, 60],
+  firstAirDate: DateTime.parse("2022-12-31"),
   genres: [
     GenreModel(
-      id: 12,
+      id: 1,
       name: "Action",
-    ),
-    GenreModel(
-      id: 34,
-      name: "Drama",
     ),
   ],
   homepage: "http://example.com",
   id: 56789,
   inProduction: true,
-  languages: ["English", "Spanish"],
-  lastAirDate: DateTime.parse("2023-12-31"),
+  languages: ["English"],
+  lastAirDate: DateTime.parse("2022-12-31"),
   lastEpisodeToAir: LastEpisodeToAirModel(
     id: 9876,
     name: "Example Episode",
@@ -75,7 +71,7 @@ final tTvSeriesDetail = TvSeriesDetail(
     showId: 56789,
     stillPath: "/example_still_path.jpg",
   ),
-  name: "Example TV Series",
+  name: "TestSeries",
   nextEpisodeToAir: null, // Isi sesuai kebutuhan
   networks: [
     NetworkModel(
@@ -85,14 +81,14 @@ final tTvSeriesDetail = TvSeriesDetail(
       originCountry: "US",
     ),
   ],
-  numberOfEpisodes: 20,
+  numberOfEpisodes: 10,
   numberOfSeasons: 2,
   originCountry: ["US"],
   originalLanguage: "en",
-  originalName: "Example Original Name",
+  originalName: "Original Dummy Tv Series",
   overview: "This is an example TV series.",
   popularity: 123.45,
-  posterPath: "/example_poster_path.jpg",
+  posterPath: "/test_poster_path.jpg",
   productionCompanies: [
     NetworkModel(
       id: 2,
@@ -136,11 +132,11 @@ final tTvSeriesDetail = TvSeriesDetail(
       name: "English",
     ),
   ],
-  status: "Returning Series",
-  tagline: "An example tagline",
+  status: "Running",
+  tagline: "Tagline of Dummy Tv Series",
   type: "Scripted",
-  voteAverage: 8.3,
-  voteCount: 500,
+  voteAverage: 8.5,
+  voteCount: 100,
 );
 
 final tTvSeriesDetailModel = TvSeriesDetailModel(

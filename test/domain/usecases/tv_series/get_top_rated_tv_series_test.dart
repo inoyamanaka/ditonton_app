@@ -23,7 +23,7 @@ void main() {
           'should get list of movies from the repository when execute function is called',
           () async {
         // arrange
-        when(mockMovieRpository.getTopRatedTvSeries())
+        when(mockMovieRpository.getTvSeriesTopRated())
             .thenAnswer((_) async => Right(tMovies));
         // act
         final result = await usecase.execute();

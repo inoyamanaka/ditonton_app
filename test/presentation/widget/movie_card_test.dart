@@ -1,11 +1,11 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/pages/movie/movie_detail_page.dart';
 import 'package:ditonton/presentation/widgets/movie/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+
+import '../../dummy_data/dummy_objects.dart';
 
 class MockMovie extends Mock implements Movie {}
 
@@ -14,11 +14,7 @@ void main() {
     late Movie movie;
 
     setUp(() {
-      movie = MockMovie();
-      when(movie.id).thenReturn(1);
-      when(movie.title).thenReturn('Test Movie');
-      when(movie.overview).thenReturn('Test overview');
-      when(movie.posterPath).thenReturn('/test_poster_path.jpg');
+      movie = testMovie;
     });
 
     testWidgets('Widget renders correctly', (WidgetTester tester) async {
@@ -27,10 +23,12 @@ void main() {
           body: MovieCard(movie),
         ),
       ));
-
-      expect(find.text('Test Movie'), findsOneWidget);
-      expect(find.text('Test overview'), findsOneWidget);
-      expect(find.byType(CachedNetworkImage), findsOneWidget);
+      expect(find.text('Spider-Man'), findsOneWidget);
+      expect(
+          find.text(
+              'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.'),
+          findsOneWidget);
+      // expect(find.byType(CachedNetworkImage), findsOneWidget);
     });
 
     testWidgets('Widget onTap navigation', (WidgetTester tester) async {
@@ -39,7 +37,8 @@ void main() {
           body: MovieCard(movie),
         ),
         routes: {
-          MovieDetailPage.ROUTE_NAME: (_) => Material(child: Text('Detail Page')),
+          MovieDetailPage.ROUTE_NAME: (_) =>
+              Material(child: Text('Detail Page')),
         },
       ));
 

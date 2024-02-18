@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 abstract class TvSeriesRemoteDataSource {
   Future<List<TvSeriesModel>> getOnTheAirTvSeries();
   Future<List<TvSeriesModel>> getPopularTvSeries();
-  Future<List<TvSeriesModel>> getTopRatedTvSeries();
+  Future<List<TvSeriesModel>> getTvSeriesTopRated();
   Future<TvSeriesDetailModel> getTvSeriesDetail(int id);
   Future<List<TvSeriesModel>> getTvSeriesRecommendations(int id);
   Future<List<TvSeriesModel>> searchSeries(String query);
@@ -48,7 +48,7 @@ class TvSeriesRemoteDataSourceImpl implements TvSeriesRemoteDataSource {
   }
 
   @override
-  Future<List<TvSeriesModel>> getTopRatedTvSeries() async {
+  Future<List<TvSeriesModel>> getTvSeriesTopRated() async {
     final response =
         await client.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY'));
 

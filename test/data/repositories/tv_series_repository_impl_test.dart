@@ -281,12 +281,12 @@ void main() {
         'should return remote data when the call to remote data source is successful',
         () async {
       // arrange
-      when(mockRemoteDataSource.getTopRatedTvSeries())
+      when(mockRemoteDataSource.getTvSeriesTopRated())
           .thenAnswer((_) async => tTvSeriesList);
       // act
-      final result = await repository.getTopRatedTvSeries();
+      final result = await repository.getTvSeriesTopRated();
       // assert
-      verify(mockRemoteDataSource.getTopRatedTvSeries());
+      verify(mockRemoteDataSource.getTvSeriesTopRated());
       /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
       final resultList = result.getOrElse(() => []);
       expect(resultList, tTvSeriesList);
@@ -296,12 +296,12 @@ void main() {
         'should return server failure when the call to remote data source is unsuccessful',
         () async {
       // arrange
-      when(mockRemoteDataSource.getTopRatedTvSeries())
+      when(mockRemoteDataSource.getTvSeriesTopRated())
           .thenThrow(ServerException());
       // act
-      final result = await repository.getTopRatedTvSeries();
+      final result = await repository.getTvSeriesTopRated();
       // assert
-      verify(mockRemoteDataSource.getTopRatedTvSeries());
+      verify(mockRemoteDataSource.getTvSeriesTopRated());
       expect(result, equals(Left(ServerFailure(''))));
     });
 
@@ -309,12 +309,12 @@ void main() {
         'should return connection failure when the device is not connected to internet',
         () async {
       // arrange
-      when(mockRemoteDataSource.getTopRatedTvSeries())
+      when(mockRemoteDataSource.getTvSeriesTopRated())
           .thenThrow(SocketException('Failed to connect to the network'));
       // act
-      final result = await repository.getTopRatedTvSeries();
+      final result = await repository.getTvSeriesTopRated();
       // assert
-      verify(mockRemoteDataSource.getTopRatedTvSeries());
+      verify(mockRemoteDataSource.getTvSeriesTopRated());
       expect(result,
           equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });

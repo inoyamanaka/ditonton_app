@@ -86,7 +86,7 @@ void init() {
   locator.registerFactory(() => PopularTvSeriesBloc(
         TvSeriesPopularUsecase(locator()),
       ));
-  locator.registerFactory(() => TopRatedTvSeriesBloc(
+  locator.registerFactory(() => TvSeriesTopRatedBloc(
         TvSeriesTopRatedUsecase(locator()),
       ));
   locator.registerFactory(() => DetailTvSeriesBloc(

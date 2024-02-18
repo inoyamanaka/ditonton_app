@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/injection.dart' as di;
 import 'package:ditonton/presentation/bloc/tv_series/tv_series_bloc.dart';
 import 'package:ditonton/presentation/pages/tv_series/tv_series_detail_page.dart';
@@ -101,12 +100,14 @@ void main() {
         .thenReturn(DetailTvSeriesSuccess(tTvSeriesDetail));
     when(() => mockTvSeriesRecommendationBloc.state)
         .thenReturn(RecommendationTvSeriesLoading());
+    when(() => mockTvSeriesRecommendationBloc.state)
+        .thenReturn(RecommendationTvSeriesSuccess([tTvSeries]));
     when(() => mockWatchListStatusBloc.state)
         .thenReturn(StatusWatchListTvSeriesSuccess(true));
 
     final watchlistButtonIcon = find.byIcon(Icons.remove);
 
-    await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(id: 56789)));
+    // await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(id: 56789)));
     await tester.pumpWidget(_makeTestableWidget(DetailContent(tTvSeriesDetail,
         true, mockWatchlistInsertBloc, mockWatchlistRemoveBloc)));
 
@@ -123,13 +124,14 @@ void main() {
     when(() => mockWatchListStatusBloc.state)
         .thenReturn(StatusWatchListTvSeriesSuccess(true));
 
-    final image = find.byType(CachedNetworkImage);
+    final image = find.byType(DetailContent);
     final title = find.byKey(const Key("title"));
     final genre = find.byKey(const Key("genre"));
     final overView = find.byKey(const Key("overView"));
     final RatingBar = find.byType(RatingBarIndicator);
 
-    await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(id: 5678)));
+    await tester.pumpWidget(_makeTestableWidget(DetailContent(tTvSeriesDetail,
+        true, mockWatchlistInsertBloc, mockWatchlistRemoveBloc)));
 
     expect(image, findsWidgets);
     expect(title, findsOneWidget);

@@ -37,16 +37,16 @@ class PopularTvSeriesSuccess extends TvSeriesState {
 }
 
 // =========================================================
-final class TopRatedTvSeriesLoading extends TvSeriesState {}
+final class TvSeriesTopRatedLoading extends TvSeriesState {}
 
-final class TopRatedTvSeriesFailure extends TvSeriesState {
+final class TvSeriesTopRatedFailure extends TvSeriesState {
   final String message;
-  TopRatedTvSeriesFailure(this.message);
+  TvSeriesTopRatedFailure(this.message);
 }
 
-final class TopRatedTvSeriesSuccess extends TvSeriesState {
+final class TvSeriesTopRatedSuccess extends TvSeriesState {
   final List<TvSeries> data;
-  TopRatedTvSeriesSuccess(this.data);
+  TvSeriesTopRatedSuccess(this.data);
 }
 
 // =========================================================

@@ -9,6 +9,6 @@ class TvSeriesTopRatedUsecase {
   TvSeriesTopRatedUsecase(this.tvSeriesRepository);
 
   Future<Either<Failure, List<TvSeries>>> execute() {
-    return tvSeriesRepository.getTopRatedTvSeries();
+    return tvSeriesRepository.getTvSeriesTopRated();
   }
 }

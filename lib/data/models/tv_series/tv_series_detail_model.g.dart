@@ -19,9 +19,10 @@ TvSeriesDetailModel _$TvSeriesDetailModelFromJson(Map<String, dynamic> json) =>
       firstAirDate: json['first_air_date'] == null
           ? null
           : DateTime.parse(json['first_air_date'] as String),
-      genres: (json['genres'] as List<dynamic>)
-          .map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      genres: (json['genres'] as List<dynamic>?)
+              ?.map((e) => GenreModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       homepage: json['homepage'] as String?,
       id: json['id'] as int?,
       inProduction: json['in_production'] as bool?,
@@ -55,9 +56,10 @@ TvSeriesDetailModel _$TvSeriesDetailModelFromJson(Map<String, dynamic> json) =>
           .map(
               (e) => ProductionCountryModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      seasons: (json['seasons'] as List<dynamic>)
-          .map((e) => SeasonTvModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      seasons: (json['seasons'] as List<dynamic>?)
+              ?.map((e) => SeasonTvModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       spokenLanguages: (json['spoken_languages'] as List<dynamic>)
           .map((e) => SpokenLanguageModel.fromJson(e as Map<String, dynamic>))
           .toList(),

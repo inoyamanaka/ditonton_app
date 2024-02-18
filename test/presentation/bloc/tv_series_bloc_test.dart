@@ -24,7 +24,7 @@ void main() {
   late RecommendationTvSeriesBloc tvSeriesRecommendationBloc;
   late OnTheAirTvSeriesBloc onTheAirTvSeriesBloc;
   late PopularTvSeriesBloc popularTvSeriesBlocl;
-  late TopRatedTvSeriesBloc topRatedTvSeriesBloc;
+  late TvSeriesTopRatedBloc tvSeriesTopRatedBloc;
   late DetailTvSeriesBloc detailTvSeriesBloc;
   late SearchTvSeriesBloc searchTvSeriesBloc;
   late StatusWatchListBloc statusWatchListBloc;
@@ -48,7 +48,7 @@ void main() {
         RecommendationTvSeriesBloc(mockGetTvSeriesRecommendations);
     onTheAirTvSeriesBloc = OnTheAirTvSeriesBloc(mockTvSeriesOnTheAirUsecase);
     popularTvSeriesBlocl = PopularTvSeriesBloc(mockTvSeriesPopularUsecase);
-    topRatedTvSeriesBloc = TopRatedTvSeriesBloc(mockTvSeriesTopRatedUsecase);
+    tvSeriesTopRatedBloc = TvSeriesTopRatedBloc(mockTvSeriesTopRatedUsecase);
     detailTvSeriesBloc = DetailTvSeriesBloc(mockTvSeriesDetailUsecase);
     searchTvSeriesBloc = SearchTvSeriesBloc(mockSearchTvSeriesUsecase);
     statusWatchListBloc = StatusWatchListBloc(mockGetStatusWatchlistTvSeries);
@@ -127,31 +127,31 @@ void main() {
     final testTvSeries = <TvSeries>[];
 
     test('InitialState should be Empty', () {
-      expect(topRatedTvSeriesBloc.state, TvSeriesInitial());
+      expect(tvSeriesTopRatedBloc.state, TvSeriesInitial());
     });
 
     blocTest("Should state loading and has data state", build: () {
       when(mockTvSeriesTopRatedUsecase.execute())
           .thenAnswer((_) async => Right([]));
 
-      return topRatedTvSeriesBloc;
+      return tvSeriesTopRatedBloc;
     }, act: (bloc) {
-      return bloc.add(const TopRatedTvSeriesEvent());
+      return bloc.add(const TvSeriesTopRatedEvent());
     }, expect: () {
-      return [TopRatedTvSeriesLoading(), TopRatedTvSeriesSuccess(testTvSeries)];
+      return [TvSeriesTopRatedLoading(), TvSeriesTopRatedSuccess(testTvSeries)];
     });
 
     blocTest("Should state loading and error state", build: () {
       when(mockTvSeriesTopRatedUsecase.execute())
           .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
 
-      return topRatedTvSeriesBloc;
+      return tvSeriesTopRatedBloc;
     }, act: (bloc) {
-      return bloc.add(const TopRatedTvSeriesEvent());
+      return bloc.add(const TvSeriesTopRatedEvent());
     }, expect: () {
       return [
-        TopRatedTvSeriesLoading(),
-        TopRatedTvSeriesFailure("Server Failure")
+        TvSeriesTopRatedLoading(),
+        TvSeriesTopRatedFailure("Server Failure")
       ];
     });
   });
@@ -304,8 +304,8 @@ void main() {
 
       return insertWatchListBloc;
     }, act: (bloc) {
-      return bloc.add(
-          InsertWatchListTvSeriesEvent(tTvSeriesDetail)); // assuming 1 is the TV series ID
+      return bloc.add(InsertWatchListTvSeriesEvent(
+          tTvSeriesDetail)); // assuming 1 is the TV series ID
     }, expect: () {
       return [
         InsertWatchListTvSeriesLoading(),
@@ -319,8 +319,8 @@ void main() {
 
       return insertWatchListBloc;
     }, act: (bloc) {
-      return bloc.add(
-          InsertWatchListTvSeriesEvent(tTvSeriesDetail)); // assuming 1 is the TV series ID
+      return bloc.add(InsertWatchListTvSeriesEvent(
+          tTvSeriesDetail)); // assuming 1 is the TV series ID
     }, expect: () {
       return [
         InsertWatchListTvSeriesLoading(),
@@ -330,74 +330,74 @@ void main() {
   });
 
   group("Remove Watchlist Tv Series", () {
-  test('InitialState should be Empty', () {
-    expect(removeWatchListBloc.state, TvSeriesInitial());
+    test('InitialState should be Empty', () {
+      expect(removeWatchListBloc.state, TvSeriesInitial());
+    });
+
+    blocTest("Should state loading and has data state", build: () {
+      when(mockRemoveWatchlistTvSeries.execute(any))
+          .thenAnswer((_) async => Right('SUCCESS'));
+
+      return removeWatchListBloc;
+    }, act: (bloc) {
+      return bloc.add(RemoveWatchListTvSeriesEvent(
+          tTvSeriesDetail)); // assuming 1 is the TV series ID
+    }, expect: () {
+      return [
+        RemoveWatchListTvSeriesLoading(),
+        RemoveWatchListTvSeriesSuccess('SUCCESS')
+      ];
+    });
+
+    blocTest("Should state loading and error state", build: () {
+      when(mockRemoveWatchlistTvSeries.execute(any))
+          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+
+      return removeWatchListBloc;
+    }, act: (bloc) {
+      return bloc.add(RemoveWatchListTvSeriesEvent(tTvSeriesDetail));
+    }, expect: () {
+      return [
+        RemoveWatchListTvSeriesLoading(),
+        RemoveWatchListTvSeriesFailure("Server Failure")
+      ];
+    });
   });
 
-  blocTest("Should state loading and has data state", build: () {
-    when(mockRemoveWatchlistTvSeries.execute(any))
-        .thenAnswer((_) async =>  Right('SUCCESS'));
+  group("Get Watchlist Tv Series", () {
+    final testWatchlist =
+        <TvSeries>[]; // Replace with the actual list of watchlist items
 
-    return removeWatchListBloc;
-  }, act: (bloc) {
-    return bloc.add(RemoveWatchListTvSeriesEvent(tTvSeriesDetail)); // assuming 1 is the TV series ID
-  }, expect: () {
-    return [
-      RemoveWatchListTvSeriesLoading(),
-      RemoveWatchListTvSeriesSuccess('SUCCESS')
-    ];
+    test('InitialState should be Empty', () {
+      expect(getWatchListBloc.state, TvSeriesInitial());
+    });
+
+    blocTest("Should state loading and has data state", build: () {
+      when(mockGetWatchlistTvSeries.execute())
+          .thenAnswer((_) async => Right(testWatchlist));
+
+      return getWatchListBloc;
+    }, act: (bloc) {
+      return bloc.add(GetWatchListTvSeriesEvent());
+    }, expect: () {
+      return [
+        GetWatchListTvSeriesLoading(),
+        GetWatchListTvSeriesSuccess(testWatchlist)
+      ];
+    });
+
+    blocTest("Should state loading and error state", build: () {
+      when(mockGetWatchlistTvSeries.execute())
+          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+
+      return getWatchListBloc;
+    }, act: (bloc) {
+      return bloc.add(GetWatchListTvSeriesEvent());
+    }, expect: () {
+      return [
+        GetWatchListTvSeriesLoading(),
+        GetWatchListTvSeriesFailure("Server Failure")
+      ];
+    });
   });
-
-  blocTest("Should state loading and error state", build: () {
-    when(mockRemoveWatchlistTvSeries.execute(any))
-        .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-
-    return removeWatchListBloc;
-  }, act: (bloc) {
-    return bloc.add(RemoveWatchListTvSeriesEvent(tTvSeriesDetail));
-  }, expect: () {
-    return [
-      RemoveWatchListTvSeriesLoading(),
-      RemoveWatchListTvSeriesFailure("Server Failure")
-    ];
-  });
-});
-
-group("Get Watchlist Tv Series", () {
-  final testWatchlist = <TvSeries>[]; // Replace with the actual list of watchlist items
-
-  test('InitialState should be Empty', () {
-    expect(getWatchListBloc.state, TvSeriesInitial());
-  });
-
-  blocTest("Should state loading and has data state", build: () {
-    when(mockGetWatchlistTvSeries.execute())
-        .thenAnswer((_) async => Right(testWatchlist));
-
-    return getWatchListBloc;
-  }, act: (bloc) {
-    return bloc.add(GetWatchListTvSeriesEvent());
-  }, expect: () {
-    return [
-      GetWatchListTvSeriesLoading(),
-      GetWatchListTvSeriesSuccess(testWatchlist)
-    ];
-  });
-
-  blocTest("Should state loading and error state", build: () {
-    when(mockGetWatchlistTvSeries.execute())
-        .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-
-    return getWatchListBloc;
-  }, act: (bloc) {
-    return bloc.add(GetWatchListTvSeriesEvent());
-  }, expect: () {
-    return [
-      GetWatchListTvSeriesLoading(),
-      GetWatchListTvSeriesFailure("Server Failure")
-    ];
-  });
-});
-
-
 }

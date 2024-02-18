@@ -2,8 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/presentation/bloc/tv_series/tv_series_bloc.dart';
+import 'package:ditonton/presentation/pages/tv_series/on_the_air_tv_series.dart';
 import 'package:ditonton/presentation/pages/tv_series/popular_tv_series_page.dart';
 import 'package:ditonton/presentation/pages/tv_series/tv_series_detail_page.dart';
+import 'package:ditonton/presentation/pages/tv_series/tv_series_top_rated_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,11 +26,12 @@ class _TvSeriesHomePageState extends State<TvSeriesHomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             _buildSubHeading(
-              title: 'On The Airr',
+              title: 'On The Air',
               onTap: () =>
-                  Navigator.pushNamed(context, PopularTvSeriesPage.ROUTE_NAME),
+                  Navigator.pushNamed(context, OnTheAirTvSeriesPage.ROUTE_NAME),
             ),
-            BlocBuilder<OnTheAirTvSeriesBloc, TvSeriesState>(builder: (context, state) {
+            BlocBuilder<OnTheAirTvSeriesBloc, TvSeriesState>(
+                builder: (context, state) {
               print(state);
               if (state is OnTheAirTvSeriesSuccess) {
                 return TvSeriesList(state.data);
@@ -50,11 +53,11 @@ class _TvSeriesHomePageState extends State<TvSeriesHomePage> {
             _buildSubHeading(
               title: 'Top Rated',
               onTap: () =>
-                  Navigator.pushNamed(context, PopularTvSeriesPage.ROUTE_NAME),
+                  Navigator.pushNamed(context, TvSeriesTopRatedPage.ROUTE_NAME),
             ),
-            BlocBuilder<TopRatedTvSeriesBloc, TvSeriesState>(
+            BlocBuilder<TvSeriesTopRatedBloc, TvSeriesState>(
                 builder: (context, state) {
-              if (state is TopRatedTvSeriesSuccess) {
+              if (state is TvSeriesTopRatedSuccess) {
                 return TvSeriesList(state.data);
               }
               return SizedBox();

@@ -108,7 +108,7 @@ void main() {
                         'application/json; charset=utf-8',
                   }));
       // act
-      final result = await dataSource.getTopRatedTvSeries();
+      final result = await dataSource.getTvSeriesTopRated();
       // assert
       expect(result, equals(tvSeriesList));
     });
@@ -120,7 +120,7 @@ void main() {
       when(mockHttpClient.get(Uri.parse('$BASE_URL/tv/top_rated?$API_KEY')))
           .thenAnswer((_) async => http.Response('Not Found', 404));
       // act
-      final call = dataSource.getTopRatedTvSeries();
+      final call = dataSource.getTvSeriesTopRated();
       // assert
       expect(() => call, throwsA(isA<ServerException>()));
     });

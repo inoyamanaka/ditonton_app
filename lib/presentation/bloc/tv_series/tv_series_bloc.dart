@@ -49,18 +49,18 @@ class PopularTvSeriesBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
   }
 }
 
-class TopRatedTvSeriesBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
+class TvSeriesTopRatedBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
   final TvSeriesTopRatedUsecase tvSeriesTopRatedUsecase;
 
-  TopRatedTvSeriesBloc(
+  TvSeriesTopRatedBloc(
     this.tvSeriesTopRatedUsecase,
   ) : super(TvSeriesInitial()) {
-    on<TopRatedTvSeriesEvent>((event, emit) async {
-      emit(TopRatedTvSeriesLoading());
+    on<TvSeriesTopRatedEvent>((event, emit) async {
+      emit(TvSeriesTopRatedLoading());
       final failureOrSuccess = await tvSeriesTopRatedUsecase.execute();
       failureOrSuccess.fold(
-        (error) => emit(TopRatedTvSeriesFailure(error.message)),
-        (data) => emit(TopRatedTvSeriesSuccess(data)),
+        (error) => emit(TvSeriesTopRatedFailure(error.message)),
+        (data) => emit(TvSeriesTopRatedSuccess(data)),
       );
     });
   }

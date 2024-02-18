@@ -21,13 +21,6 @@ final TextStyle kSubtitle = GoogleFonts.poppins(
 final TextStyle kBodyText = GoogleFonts.poppins(
     fontSize: 13, fontWeight: FontWeight.w400, letterSpacing: 0.25);
 
-// text theme
-final kTextTheme = TextTheme(
-  headlineSmall: kHeading5,
-  titleLarge: kHeading6,
-  titleMedium: kSubtitle,
-  bodyMedium: kBodyText,
-);
 
 const kColorScheme = ColorScheme(
   primary: kMikadoYellow,
