@@ -45,6 +45,11 @@ class TvSeriesSearchPage extends StatelessWidget {
                       child: CircularProgressIndicator(),
                     );
                   }
+                  if (state is SearchTvSeriesFailure) {
+                    return Center(
+                      child: Text('Tv Series not found'),
+                    );
+                  }
                   if (state is SearchTvSeriesSuccess) {
                     final result = state.data;
                     return Expanded(

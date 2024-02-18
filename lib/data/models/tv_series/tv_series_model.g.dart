@@ -13,21 +13,18 @@ TvSeriesModel _$TvSeriesModelFromJson(Map<String, dynamic> json) =>
       episodeRunTime: (json['episode_run_time'] as List<dynamic>?)
           ?.map((e) => e as int)
           .toList(),
-      firstAirDate: json['first_air_date'] == null
-          ? null
-          : DateTime.parse(json['first_air_date'] as String),
+
       genre: (json['genre'] as List<dynamic>?)
-          ?.map((e) => GenresModel.fromJson(e as Map<String, dynamic>))
-          .toList() ?? [],
+              ?.map((e) => GenresModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          [],
       homepage: json['homepage'] as String?,
       id: json['id'] as int?,
       inProduction: json['in_production'] as bool?,
       languages: (json['languages'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-      lastAirDate: json['last_air_date'] == null
-          ? null
-          : DateTime.parse(json['last_air_date'] as String),
+
       name: json['name'] as String?,
       nextEpisodeToAir: json['next_episode_to_air'],
       numberOfEpisodes: json['number_of_episodes'] as int?,

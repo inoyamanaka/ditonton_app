@@ -117,7 +117,7 @@ class _MainNavigationPageState extends State<MainNavigationPage> {
               onPressed: () {
                 Navigator.pushNamed(
                     context,
-                    indexPage == 0
+                    indexPage.value == 0
                         ? SearchPage.ROUTE_NAME
                         : TvSeriesSearchPage.ROUTE_NAME);
               },

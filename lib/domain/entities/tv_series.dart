@@ -7,13 +7,11 @@ class TvSeries extends Equatable {
   bool? adult;
   String? backdropPath;
   List<int>? episodeRunTime;
-  DateTime? firstAirDate;
   List<Genre>? genre;
   String? homepage;
   int? id;
   bool? inProduction;
   List<String>? languages;
-  DateTime? lastAirDate;
   String? name;
   dynamic? nextEpisodeToAir;
   int? numberOfEpisodes;
@@ -34,13 +32,11 @@ class TvSeries extends Equatable {
     required this.adult,
     required this.backdropPath,
     required this.episodeRunTime,
-    required this.firstAirDate,
     required this.genre,
     required this.homepage,
     required this.id,
     required this.inProduction,
     required this.languages,
-    required this.lastAirDate,
     required this.name,
     required this.nextEpisodeToAir,
     required this.numberOfEpisodes,
@@ -70,13 +66,12 @@ class TvSeries extends Equatable {
         adult,
         backdropPath,
         episodeRunTime,
-        firstAirDate,
+
         genre,
         homepage,
         id,
         inProduction,
         languages,
-        lastAirDate,
         name,
         nextEpisodeToAir,
         numberOfEpisodes,

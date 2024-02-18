@@ -110,6 +110,7 @@ class SearchTvSeriesBloc extends Bloc<TvSeriesEvent, TvSeriesState> {
     on<SearchTvSeriesEvent>((event, emit) async {
       emit(SearchTvSeriesLoading());
       final failureOrSuccess = await searchTvSeriesUsecase.execute(event.query);
+      print(failureOrSuccess);
       failureOrSuccess.fold(
         (error) => emit(SearchTvSeriesFailure(error.message)),
         (data) => emit(SearchTvSeriesSuccess(data)),

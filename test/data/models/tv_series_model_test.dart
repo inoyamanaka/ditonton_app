@@ -8,13 +8,13 @@ void main() {
     adult: false,
     backdropPath: 'backdropPath',
     episodeRunTime: [30, 40],
-    firstAirDate: DateTime.parse('2022-01-01'),
+
     genre: [GenresModel(id: 1, name: 'Action')],
     homepage: 'homepage',
     id: 1,
     inProduction: true,
     languages: ['English'],
-    lastAirDate: DateTime.parse('2022-02-01'),
+
     name: 'TV Series Name',
     nextEpisodeToAir: null,
     numberOfEpisodes: 10,
@@ -36,13 +36,13 @@ void main() {
     adult: false,
     backdropPath: 'backdropPath',
     episodeRunTime: [30, 40],
-    firstAirDate: DateTime.parse('2022-01-01'),
+
     genre: [Genre(id: 1, name: 'Action')],
     homepage: 'homepage',
     id: 1,
     inProduction: true,
     languages: ['English'],
-    lastAirDate: DateTime.parse('2022-02-01'),
+
     name: 'TV Series Name',
     nextEpisodeToAir: null,
     numberOfEpisodes: 10,

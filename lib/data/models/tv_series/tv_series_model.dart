@@ -12,13 +12,13 @@ class TvSeriesModel extends TvSeries {
       {required super.adult,
       required super.backdropPath,
       required super.episodeRunTime,
-      required super.firstAirDate,
+
       required List<GenresModel> super.genre,
       required super.homepage,
       required super.id,
       required super.inProduction,
       required super.languages,
-      required super.lastAirDate,
+
       required super.name,
       required super.nextEpisodeToAir,
       required super.numberOfEpisodes,

@@ -71,8 +71,11 @@ class TvSeriesRepositoryImpl implements TvSeriesRepository {
   Future<Either<Failure, List<TvSeries>>> searchSeries(String query) async {
     try {
       final result = await tvSeriesRemoteDatasource.searchSeries(query);
+      print('disini');
       return Right(result);
     } on ServerException {
+      print('disini2');
+
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
