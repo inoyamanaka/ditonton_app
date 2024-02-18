@@ -1,4 +1,5 @@
 import 'package:ditonton/data/models/tv_series/tv_series_model.dart';
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -36,7 +37,7 @@ void main() {
     backdropPath: 'backdropPath',
     episodeRunTime: [30, 40],
     firstAirDate: DateTime.parse('2022-01-01'),
-    genre: [GenreTv(id: 1, name: 'Action')],
+    genre: [Genre(id: 1, name: 'Action')],
     homepage: 'homepage',
     id: 1,
     inProduction: true,

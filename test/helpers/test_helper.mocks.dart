@@ -511,22 +511,23 @@ class MockTvSeriesRepository extends _i1.Mock
             )),
           ) as _i10.Future<_i2.Either<_i11.Failure, List<_i18.TvSeries>>>);
   @override
-  _i10.Future<_i2.Either<_i11.Failure, _i4.TvSeriesDetailModel>>
-      getTvSeriesDetail(int? id) => (super.noSuchMethod(
-            Invocation.method(
-              #getTvSeriesDetail,
-              [id],
-            ),
-            returnValue: _i10.Future<
-                    _i2.Either<_i11.Failure, _i4.TvSeriesDetailModel>>.value(
-                _FakeEither_0<_i11.Failure, _i4.TvSeriesDetailModel>(
-              this,
-              Invocation.method(
-                #getTvSeriesDetail,
-                [id],
-              ),
-            )),
-          ) as _i10.Future<_i2.Either<_i11.Failure, _i4.TvSeriesDetailModel>>);
+  _i10.Future<_i2.Either<_i11.Failure, _i19.TvSeriesDetail>> getTvSeriesDetail(
+          int? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getTvSeriesDetail,
+          [id],
+        ),
+        returnValue:
+            _i10.Future<_i2.Either<_i11.Failure, _i19.TvSeriesDetail>>.value(
+                _FakeEither_0<_i11.Failure, _i19.TvSeriesDetail>(
+          this,
+          Invocation.method(
+            #getTvSeriesDetail,
+            [id],
+          ),
+        )),
+      ) as _i10.Future<_i2.Either<_i11.Failure, _i19.TvSeriesDetail>>);
   @override
   _i10.Future<_i2.Either<_i11.Failure, List<_i18.TvSeries>>>
       getTvSeriesRecommendations(int? id) => (super.noSuchMethod(

@@ -83,6 +83,10 @@ void main() {
 
     final watchlistButtonIcon = find.byKey(const Key("icon"));
 
+    // await tester.pumpWidget(_makeTestableWidget(TvSeriesDetailPage(
+    //   id: 56789,
+    // )));
+
     await tester.pumpWidget(_makeTestableWidget(DetailContent(tTvSeriesDetail,
         false, mockWatchlistInsertBloc, mockWatchlistRemoveBloc)));
 

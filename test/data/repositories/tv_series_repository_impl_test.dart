@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
+import 'package:ditonton/data/models/tv_series/season_model.dart';
 import 'package:ditonton/data/models/tv_series/tv_series_detail_model.dart';
 import 'package:ditonton/data/models/tv_series/tv_series_model.dart';
 import 'package:ditonton/data/repositories/tv_series_repository_impl.dart';
@@ -56,15 +57,6 @@ void main() {
   TvSeriesDetailModel tTvSeriesDetailModel = TvSeriesDetailModel(
     adult: false,
     backdropPath: "/example_backdrop_path.jpg",
-    createdBy: [
-      CreatedByModel(
-        id: 123,
-        creditId: "example_credit_id",
-        name: "Example Creator",
-        gender: 1,
-        profilePath: "/example_profile_path.jpg",
-      ),
-    ],
     episodeRunTime: [30, 45],
     firstAirDate: DateTime.parse("2022-01-01"),
     genres: [
@@ -82,30 +74,6 @@ void main() {
     inProduction: true,
     languages: ["English", "Spanish"],
     lastAirDate: DateTime.parse("2023-12-31"),
-    lastEpisodeToAir: LastEpisodeToAirModel(
-      id: 9876,
-      name: "Example Episode",
-      overview: "This is an example episode.",
-      voteAverage: 8.5,
-      voteCount: 100,
-      airDate: DateTime.parse("2023-12-30"),
-      episodeNumber: 10,
-      productionCode: "EP123",
-      runtime: 40,
-      seasonNumber: 2,
-      showId: 56789,
-      stillPath: "/example_still_path.jpg",
-    ),
-    name: "Example TV Series",
-    nextEpisodeToAir: null, // Isi sesuai kebutuhan
-    networks: [
-      NetworkModel(
-        id: 1,
-        logoPath: "/example_network_logo.jpg",
-        name: "Example Network",
-        originCountry: "US",
-      ),
-    ],
     numberOfEpisodes: 20,
     numberOfSeasons: 2,
     originCountry: ["US"],
@@ -114,20 +82,6 @@ void main() {
     overview: "This is an example TV series.",
     popularity: 123.45,
     posterPath: "/example_poster_path.jpg",
-    productionCompanies: [
-      NetworkModel(
-        id: 2,
-        logoPath: "/example_company_logo.jpg",
-        name: "Example Production Company",
-        originCountry: "US",
-      ),
-    ],
-    productionCountries: [
-      ProductionCountryModel(
-        iso31661: "US",
-        name: "United States",
-      ),
-    ],
     seasons: [
       SeasonTvModel(
         airDate: DateTime.parse("2022-01-01"),
@@ -150,18 +104,13 @@ void main() {
         voteAverage: 8.5,
       ),
     ],
-    spokenLanguages: [
-      SpokenLanguageModel(
-        englishName: "English",
-        iso6391: "en",
-        name: "English",
-      ),
-    ],
     status: "Returning Series",
     tagline: "An example tagline",
     type: "Scripted",
     voteAverage: 8.3,
     voteCount: 500,
+    name: 'Example TV Series',
+    nextEpisodeToAir: null,
   );
 
   final tTvSeriesList = <TvSeriesModel>[tTvSeriesModel];

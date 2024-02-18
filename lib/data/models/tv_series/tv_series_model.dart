@@ -1,3 +1,6 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -37,7 +40,7 @@ class TvSeriesModel extends TvSeries {
 }
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
-class GenresModel extends GenreTv {
+class GenresModel extends Genre {
   GenresModel({required super.id, required super.name});
   factory GenresModel.fromJson(Map<String, dynamic> json) =>
       _$GenresModelFromJson(json);

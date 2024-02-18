@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/domain/entities/tv_series.dart';
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/tv_series_detail.dart';
 import 'package:ditonton/injection.dart';
 import 'package:ditonton/presentation/bloc/tv_series/tv_series_bloc.dart';
@@ -336,10 +336,10 @@ class _DetailContentState extends State<DetailContent> {
     );
   }
 
-  String _showGenres(List<GenreTv> genres) {
+  String _showGenres(List<Genre> genres) {
     String result = '';
     for (var genre in genres) {
-      result += genre.name! + ', ';
+      result += genre.name + ', ';
     }
 
     if (result.isEmpty) {

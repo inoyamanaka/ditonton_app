@@ -1,5 +1,6 @@
-// ignore_for_file: unnecessary_question_mark
+// ignore_for_file: unnecessary_question_mark, must_be_immutable
 
+import 'package:ditonton/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeries extends Equatable {
@@ -7,7 +8,7 @@ class TvSeries extends Equatable {
   String? backdropPath;
   List<int>? episodeRunTime;
   DateTime? firstAirDate;
-  List<GenreTv>? genre;
+  List<Genre>? genre;
   String? homepage;
   int? id;
   bool? inProduction;
@@ -92,17 +93,4 @@ class TvSeries extends Equatable {
         voteAverage,
         voteCount,
       ];
-}
-
-class GenreTv extends Equatable {
-  GenreTv({
-    required this.id,
-    required this.name,
-  });
-
-  final int? id;
-  final String? name;
-
-  @override
-  List<Object?> get props => [id, name];
 }
