@@ -1,6 +1,5 @@
 // ignore_for_file: unnecessary_question_mark
 
-import 'package:ditonton/domain/entities/season.dart';
 import 'package:equatable/equatable.dart';
 
 class TvSeries extends Equatable {
@@ -24,7 +23,6 @@ class TvSeries extends Equatable {
   String? overview;
   double? popularity;
   String? posterPath;
-  List<Season?>? season;
   String? status;
   String? tagline;
   String? type;
@@ -52,7 +50,6 @@ class TvSeries extends Equatable {
     required this.overview,
     required this.popularity,
     required this.posterPath,
-    required this.season,
     required this.status,
     required this.tagline,
     required this.type,
@@ -89,7 +86,6 @@ class TvSeries extends Equatable {
         overview,
         popularity,
         posterPath,
-        season,
         status,
         tagline,
         type,

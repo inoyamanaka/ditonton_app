@@ -1,4 +1,3 @@
-import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -27,7 +26,6 @@ class TvSeriesModel extends TvSeries {
       required super.overview,
       required super.popularity,
       required super.posterPath,
-      required List<SeasonModel> super.season,
       required super.status,
       required super.tagline,
       required super.type,
@@ -36,22 +34,6 @@ class TvSeriesModel extends TvSeries {
 
   factory TvSeriesModel.fromJson(Map<String, dynamic> json) =>
       _$TvSeriesModelFromJson(json);
-}
-
-@JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)
-class SeasonModel extends Season {
-  SeasonModel(
-      {required super.airDate,
-      required super.episodeCount,
-      required super.id,
-      required super.name,
-      required super.overview,
-      required super.posterPath,
-      required super.seasonNumber,
-      required super.voteAverage});
-
-  factory SeasonModel.fromJson(Map<String, dynamic> json) =>
-      _$SeasonModelFromJson(json);
 }
 
 @JsonSerializable(createToJson: false, fieldRename: FieldRename.snake)

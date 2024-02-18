@@ -1,5 +1,4 @@
 import 'package:ditonton/data/models/tv_series/tv_series_model.dart';
-import 'package:ditonton/domain/entities/season.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -25,28 +24,6 @@ void main() {
     overview: 'Overview',
     popularity: 100.0,
     posterPath: 'posterPath',
-    season: [
-      SeasonModel(
-        airDate: DateTime.parse('2022-01-01'),
-        episodeCount: 5,
-        id: 1,
-        name: 'Season 1',
-        overview: 'Season 1 Overview',
-        posterPath: 'season1PosterPath',
-        seasonNumber: 1,
-        voteAverage: 9.0,
-      ),
-      SeasonModel(
-        airDate: DateTime.parse('2022-01-01'),
-        episodeCount: 5,
-        id: 2,
-        name: 'Season 2',
-        overview: 'Season 2 Overview',
-        posterPath: 'season2PosterPath',
-        seasonNumber: 2,
-        voteAverage: 9.5,
-      ),
-    ],
     status: 'Running',
     tagline: 'Tagline',
     type: 'TV',
@@ -75,28 +52,6 @@ void main() {
     overview: 'Overview',
     popularity: 100.0,
     posterPath: 'posterPath',
-    season: [
-      Season(
-        airDate: DateTime.parse('2022-01-01'),
-        episodeCount: 5,
-        id: 1,
-        name: 'Season 1',
-        overview: 'Season 1 Overview',
-        posterPath: 'season1PosterPath',
-        seasonNumber: 1,
-        voteAverage: 9.0,
-      ),
-      Season(
-        airDate: DateTime.parse('2022-01-01'),
-        episodeCount: 5,
-        id: 2,
-        name: 'Season 2',
-        overview: 'Season 2 Overview',
-        posterPath: 'season2PosterPath',
-        seasonNumber: 2,
-        voteAverage: 9.5,
-      ),
-    ],
     status: 'Running',
     tagline: 'Tagline',
     type: 'TV',

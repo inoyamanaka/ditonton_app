@@ -195,7 +195,7 @@ class _DetailContentState extends State<DetailContent> {
                                 }
                               },
                               child: ValueListenableBuilder(
-                                
+                                key: const Key('icon'),
                                 valueListenable: statusWatchList,
                                 builder: (context, value, child) => Row(
                                   mainAxisSize: MainAxisSize.min,

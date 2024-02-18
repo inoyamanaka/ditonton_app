@@ -24,7 +24,6 @@ final tTvSeries = TvSeries(
   overview: 'Test overview',
   popularity: 123.45,
   posterPath: '/test_poster_path.jpg',
-  season: [],
   status: 'Running',
   tagline: 'Tagline of Dummy Tv Series',
   type: 'Scripted',
