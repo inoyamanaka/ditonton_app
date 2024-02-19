@@ -1,3 +1,4 @@
+import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/domain/entities/tv_series.dart';
 import 'package:ditonton/injection.dart';
 import 'package:ditonton/presentation/bloc/tv_series/tv_series_bloc.dart';
@@ -12,13 +13,24 @@ class WatchlistTvSeriesPage extends StatefulWidget {
   _WatchlistTvSeriesPageState createState() => _WatchlistTvSeriesPageState();
 }
 
-class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage> {
+class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage>
+    with RouteAware {
   final watchListBloc = locator<GetWatchListBloc>();
   List<TvSeries> dataTvSeries = [];
 
   @override
   void initState() {
     super.initState();
+    watchListBloc.add(GetWatchListTvSeriesEvent());
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    routeObserver.subscribe(this, ModalRoute.of(context)!);
+  }
+
+  void didPopNext() {
     watchListBloc.add(GetWatchListTvSeriesEvent());
   }
 
@@ -45,7 +57,6 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage> {
                     child: Text(state.message),
                   );
                 } else if (state is GetWatchListTvSeriesSuccess) {
-                  print(state.data.length);
                   dataTvSeries = state.data;
                   ListView.builder(
                     itemBuilder: (context, index) {
@@ -55,8 +66,6 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage> {
                     itemCount: state.data.length,
                   );
                 }
-                print(state);
-
                 return ListView.builder(
                   itemBuilder: (context, index) {
                     final series = dataTvSeries[index];
@@ -68,5 +77,11 @@ class _WatchlistTvSeriesPageState extends State<WatchlistTvSeriesPage> {
             )),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    routeObserver.unsubscribe(this);
+    super.dispose();
   }
 }
