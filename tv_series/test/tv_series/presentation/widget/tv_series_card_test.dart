@@ -1,0 +1,54 @@
+// ignore_for_file: must_be_immutable
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mockito/mockito.dart';
+import 'package:tv_series/domain/entities/tv_series.dart';
+import 'package:tv_series/presentation/pages/tv_series/tv_series_detail_page.dart';
+import 'package:tv_series/presentation/widgets/tv_series/tv_series_card_list.dart';
+
+class MockTvSeries extends Mock implements TvSeries {}
+
+void main() {
+  group('TvSeriesCard Widget Test', () {
+    late TvSeries tvSeries;
+
+    setUp(() {
+      tvSeries = MockTvSeries();
+      when(tvSeries.id).thenReturn(1);
+      when(tvSeries.name).thenReturn('Test Series');
+      when(tvSeries.overview).thenReturn('Test overview');
+      when(tvSeries.posterPath).thenReturn('/test_poster_path.jpg');
+    });
+
+    testWidgets('Widget renders correctly', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: TvSeriesCard(tvSeries),
+        ),
+      ));
+
+      expect(find.text('Test Series'), findsOneWidget);
+      expect(find.text('Test overview'), findsOneWidget);
+      expect(find.byType(CachedNetworkImage), findsOneWidget);
+    });
+
+    testWidgets('Widget onTap navigation', (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: TvSeriesCard(tvSeries),
+        ),
+        routes: {
+          TvSeriesDetailPage.ROUTE_NAME: (_) =>
+              const Material(child: Text('Detail Page')),
+        },
+      ));
+
+      await tester.tap(find.byType(InkWell));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Detail Page'), findsOneWidget);
+    });
+  });
+}

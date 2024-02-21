@@ -26,12 +26,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   dartz: ^0.10.0-nullsafety.2
   equatable: ^2.0.2
+  firebase_core: ^2.25.4
+  firebase_crashlytics: ^3.4.14
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.4
+  flutter_lints: ^3.0.1
   flutter_rating_bar: ^4.0.0
   get_it: ^7.1.3
-  google_fonts: ^5.1.0
+  google_fonts: ^6.1.0
   http: ^1.1.0
   json_annotation: ^4.8.1
   path_provider: ^2.0.2
@@ -39,6 +42,14 @@ dependencies:
   remixicon: ^1.1.1
   salomon_bottom_bar: ^3.3.2
   sqflite: ^2.0.0+3
+  combine_coverage: ^1.0.2
+
+  core:
+    path: core
+  movies:
+    path: movies
+  tv_series:
+    path: tv_series
 
 dev_dependencies:
   bloc_test: ^9.1.6
@@ -51,6 +62,9 @@ dev_dependencies:
   mockito: ^5.0.8
   mocktail: ^1.0.3
   network_image_mock: ^2.0.1
+  melos: ^4.1.0
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
