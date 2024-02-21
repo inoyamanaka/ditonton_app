@@ -32,16 +32,3 @@ scripts:
     select-package:
       flutter: true
       dir-exists: test
-
-
-  combine_coverage:
-    description: Merge all packages coverage tracefiles ignoring data related to generated files.
-    run: melos exec -- bash"\$MELOS_ROOT_PATH/.\combine_coverage.sh"
-
-  unit_test_and_coverage:
-    description: Merge all packages coverage tracefiles ignoring data related to generated files.
-    run: |
-      
-      melos exec -c 1 --file-exists=coverage/lcov.info -- coverde filter --input ./coverage/lcov.info --output MELOS_ROOT_PATH/coverage/filtered.lcov.info --filters \.g\.dart
-      coverde value -i coverage/filtered.lcov.info > MELOS_ROOT_PATH/coverage/result.txt
-     

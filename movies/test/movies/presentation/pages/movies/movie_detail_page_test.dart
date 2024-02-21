@@ -1,4 +1,3 @@
-
 // import 'package:ditonton/injection.dart' as di;
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +12,10 @@ import '../../../dummy_data/dummy_objects.dart';
 import '../../../helpers/mock_movie_detail.dart';
 import '../../../helpers/mock_movie_recommendation.dart';
 import '../../../helpers/mock_status_movie_watch_list.dart';
+import '../../../helpers/mock_watchlist_movie_insert.dart';
+import '../../../helpers/mock_watchlist_movie_remove.dart';
 
 void main() {
-  // di.init();
-
   late MockMovieRecommendationBloc mockMovieRecommendationBloc;
   registerFallbackValue(MockMovieRecommendationEvent);
   registerFallbackValue(MockMovieRecommendationState);
@@ -29,10 +28,20 @@ void main() {
   registerFallbackValue(MockMovieDetailEvent);
   registerFallbackValue(MockMovieDetailState);
 
+  late MockWatchlistInsertMovieBloc mockWatchlistInsertMovieBloc;
+  registerFallbackValue(MockWatchlistMovieInsertEvent);
+  registerFallbackValue(MockWatchlistInsertMovieState);
+
+  late MockWatchlistRemoveMovieBloc mockWatchlistRemoveMovieBloc;
+  registerFallbackValue(MockWatchlistMovieRemoveEvent);
+  registerFallbackValue(MockWatchlistMovieRemoveState);
+
   setUp(() {
     mockMovieRecommendationBloc = MockMovieRecommendationBloc();
     mockWatchListStatusBloc = MockStatusMovieWatchListBloc();
     mockTvSeriesDetailBloc = MockMovieDetailBloc();
+    mockWatchlistInsertMovieBloc = MockWatchlistInsertMovieBloc();
+    mockWatchlistRemoveMovieBloc = MockWatchlistRemoveMovieBloc();
   });
 
   Widget makeTestableWidget(Widget body) {
@@ -46,6 +55,12 @@ void main() {
         ),
         BlocProvider<MovieStatusWatchListBloc>(
           create: (context) => mockWatchListStatusBloc,
+        ),
+        BlocProvider<InsertWatchListMovieBloc>(
+          create: (context) => mockWatchlistInsertMovieBloc,
+        ),
+        BlocProvider<RemoveWatchListMovieBloc>(
+          create: (context) => mockWatchlistRemoveMovieBloc,
         ),
       ],
       child: MaterialApp(
@@ -61,6 +76,10 @@ void main() {
         .thenReturn(const RecommendationMovieSuccess(<Movie>[]));
     when(() => mockWatchListStatusBloc.state)
         .thenReturn(const StatusWatchListMovieSuccess(true));
+    when(() => mockWatchlistInsertMovieBloc.state)
+        .thenReturn(const InsertWatchListMovieSuccess('SUCCESS ADD'));
+    when(() => mockWatchlistRemoveMovieBloc.state)
+        .thenReturn(const RemoveWatchListMovieSuccess('SUCCESS REMOVE'));
 
     final image = find.byType(CachedNetworkImage);
     await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));

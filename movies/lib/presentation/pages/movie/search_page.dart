@@ -24,8 +24,8 @@ class SearchPage extends StatelessWidget {
           children: [
             TextField(
               onSubmitted: (query) {
-                // Provider.of<MovieSearchNotifier>(context, listen: false)
-                //     .fetchMovieSearch(query);
+                BlocProvider.of<SearchMovieBloc>(context)
+                    .add(SearchMovieEvent(query));
               },
               decoration: const InputDecoration(
                 hintText: 'Search title',
@@ -53,16 +53,30 @@ class SearchPage extends StatelessWidget {
                 }
                 if (state is SearchMovieSuccess) {
                   final result = state.data;
-                  return Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      itemBuilder: (context, index) {
-                        final series = result[index];
-                        return MovieCard(series);
-                      },
-                      itemCount: result.length,
-                    ),
-                  );
+
+                  return result.isEmpty
+                      ? const Column(
+                          children: [
+                            SizedBox(height: 10),
+                            Text(
+                                'Tidak ada film dengan judul tersebut yang terdaftar'),
+                            SizedBox(height: 40),
+                            Icon(
+                              Icons.cancel_outlined,
+                              size: 120,
+                            )
+                          ],
+                        )
+                      : Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.all(8),
+                            itemBuilder: (context, index) {
+                              final series = result[index];
+                              return MovieCard(series);
+                            },
+                            itemCount: result.length,
+                          ),
+                        );
                 }
 
                 return const SizedBox();

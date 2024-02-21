@@ -2,7 +2,6 @@
 
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/common/constants.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -32,9 +31,6 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
     context.read<RecommendationTvSeriesBloc>().add(
           RecommendationTvSeriesEvent(widget.id),
         );
-    context.read<StatusWatchListBloc>().add(
-          StatusWatchListTvSeriesEvent(widget.id),
-        );
   }
 
   @override
@@ -50,7 +46,7 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
           if (state is DetailTvSeriesSuccess) {
             final series = state.data;
             return SafeArea(
-              child: DetailContent(series, isAddWatchlist),
+              child: DetailContent(series, widget.id),
             );
           }
           if (state is DetailTvSeriesFailure) {
@@ -65,9 +61,9 @@ class _TvSeriesDetailPageState extends State<TvSeriesDetailPage> {
 
 class DetailContent extends StatefulWidget {
   final TvSeriesDetail series;
-  final bool isAddedWatchlist;
+  final int id;
 
-  const DetailContent(this.series, this.isAddedWatchlist, {super.key});
+  const DetailContent(this.series, this.id, {super.key});
 
   @override
   State<DetailContent> createState() => _DetailContentState();
@@ -79,7 +75,10 @@ class _DetailContentState extends State<DetailContent> {
   @override
   void initState() {
     super.initState();
-    statusWatchList = ValueNotifier<bool>(widget.isAddedWatchlist);
+    statusWatchList = ValueNotifier<bool>(false);
+    context.read<StatusWatchListBloc>().add(
+          StatusWatchListTvSeriesEvent(widget.id),
+        );
   }
 
   @override
@@ -90,7 +89,7 @@ class _DetailContentState extends State<DetailContent> {
         BlocListener<StatusWatchListBloc, TvSeriesState>(
           listener: (context, state) {
             if (state is StatusWatchListTvSeriesSuccess) {
-              // widget.isAddedWatchlist = state.status;
+              statusWatchList.value = state.status;
             }
           },
         ),
@@ -153,18 +152,22 @@ class _DetailContentState extends State<DetailContent> {
                               ),
                               ElevatedButton(
                                 onPressed: () async {
-                                  if (!widget.isAddedWatchlist) {
-                                    context.read<InsertWatchListBloc>().add(
-                                          InsertWatchListTvSeriesEvent(
-                                              widget.series),
-                                        );
-                                    statusWatchList.value = true;
-                                  } else {
-                                    context.read<RemoveWatchListBloc>().add(
-                                          RemoveWatchListTvSeriesEvent(
-                                              widget.series),
-                                        );
+                                  if (statusWatchList.value) {
+                                    BlocProvider.of<RemoveWatchListBloc>(
+                                            context)
+                                        .add(
+                                      RemoveWatchListTvSeriesEvent(
+                                          widget.series),
+                                    );
                                     statusWatchList.value = false;
+                                  } else {
+                                    BlocProvider.of<InsertWatchListBloc>(
+                                            context)
+                                        .add(
+                                      InsertWatchListTvSeriesEvent(
+                                          widget.series),
+                                    );
+                                    statusWatchList.value = true;
                                   }
                                 },
                                 child: ValueListenableBuilder(

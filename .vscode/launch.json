@@ -8,59 +8,70 @@
         {
             "name": "ditonton_app",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "program": "lib/main.dart",
         },
         {
             "name": "ditonton_app (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "program": "lib/main.dart",
+
         },
         {
             "name": "ditonton_app (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "program": "lib/main.dart",
+
         },
         {
             "name": "core",
             "cwd": "core",
             "request": "launch",
-            "type": "dart"
+            "program": "lib/main.dart",
+            "type": "dart", 
         },
         {
             "name": "core (profile mode)",
             "cwd": "core",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "lib/main.dart",
+            "flutterMode": "profile",
         },
         {
             "name": "core (release mode)",
             "cwd": "core",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "program": "lib/main.dart",
+            "flutterMode": "release",
         },
         {
             "name": "movies",
             "cwd": "movies",
             "request": "launch",
-            "type": "dart"
+            "program": "lib/main.dart",
+            "type": "dart",
         },
         {
             "name": "movies (profile mode)",
             "cwd": "movies",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "program": "lib/main.dart",
+            "flutterMode": "profile",
         },
         {
             "name": "movies (release mode)",
             "cwd": "movies",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "program": "lib/main.dart",
+            "flutterMode": "release",
         }
     ]
 }

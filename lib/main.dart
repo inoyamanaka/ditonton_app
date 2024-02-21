@@ -95,6 +95,9 @@ class MyApp extends StatelessWidget {
           create: (context) => di.locator<RecommendationTvSeriesBloc>(),
         ),
         BlocProvider(
+          create: (context) => di.locator<GetWatchListBloc>(),
+        ),
+        BlocProvider(
           create: (context) => di.locator<StatusWatchListBloc>(),
         ),
         BlocProvider(
@@ -102,7 +105,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => di.locator<RemoveWatchListBloc>(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => di.locator<GetWatchListMovieBloc>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

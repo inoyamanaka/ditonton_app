@@ -11,7 +11,7 @@ class TvSeriesResponse extends Equatable {
         .toList();
 
     return TvSeriesResponse(
-        tvSeriesList: tvSeriesList.isEmpty ? null : tvSeriesList);
+        tvSeriesList: tvSeriesList.isEmpty ? [] : tvSeriesList);
   }
 
   final List<TvSeriesModel>? tvSeriesList;

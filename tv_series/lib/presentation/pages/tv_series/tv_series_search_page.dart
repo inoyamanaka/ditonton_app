@@ -53,16 +53,29 @@ class TvSeriesSearchPage extends StatelessWidget {
                 }
                 if (state is SearchTvSeriesSuccess) {
                   final result = state.data;
-                  return Expanded(
-                    child: ListView.builder(
-                      padding: const EdgeInsets.all(8),
-                      itemBuilder: (context, index) {
-                        final series = result[index];
-                        return TvSeriesCard(series);
-                      },
-                      itemCount: result.length,
-                    ),
-                  );
+                  return result.isEmpty
+                      ? const Column(
+                          children: [
+                            SizedBox(height: 10),
+                            Text(
+                                'Tidak ada film dengan judul tersebut yang terdaftar'),
+                            SizedBox(height: 40),
+                            Icon(
+                              Icons.cancel_outlined,
+                              size: 120,
+                            )
+                          ],
+                        )
+                      : Expanded(
+                          child: ListView.builder(
+                            padding: const EdgeInsets.all(8),
+                            itemBuilder: (context, index) {
+                              final series = result[index];
+                              return TvSeriesCard(series);
+                            },
+                            itemCount: result.length,
+                          ),
+                        );
                 }
 
                 return const SizedBox();
